@@ -75,29 +75,15 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: argocd-notifications-controller
-  strategy:
-    type: Recreate
+      app: nginx
+  replicas: 2 # tells deployment to run 2 pods matching the template
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: argocd-notifications-controller
+        app: nginx
     spec:
       containers:
-      - command:
-        - /app/argocd-notifications-backend
-        - controller
-        image: argoprojlabs/argocd-notifications:v1.0.2
-        imagePullPolicy: Always
-        name: argocd-notifications-controller
-        volumeMounts:
-        - mountPath: /app/config/tls
-          name: tls-certs
-        workingDir: /app
-      securityContext:
-        runAsNonRoot: true
-      serviceAccountName: argocd-notifications-controller
-      volumes:
-      - configMap:
-          name: argocd-tls-certs-cm
-        name: tls-certs
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80

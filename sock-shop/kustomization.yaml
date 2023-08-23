@@ -1,3 +1,9 @@
 resources:
 - base/rabbitmq-dep.yaml
 - base/rabbitmq-svc.yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: argocd-notifications-secret
+type: Opaque
