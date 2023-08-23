@@ -72,6 +72,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: argocd-notifications-controller
+  annotations:
+    notifications.argoproj.io/subscribe.on-sync-succeeded.teams: https://gearmentinc.webhook.office.com/webhookb2/1476b39f-9d9f-4d83-9851-ce7ac115ee3c@92ab7646-e7fe-4eb7-a29b-436d706c0a3d/IncomingWebhook/8311c5fc4997482699df869e01e131d7/f62080b2-0210-4a9c-ad65-b737537be39a
 spec:
   selector:
     matchLabels:
@@ -89,3 +91,19 @@ spec:
           ports:
             - containerPort: 80
             - containerPort: 443
+#---
+#apiVersion: v1
+#kind: ConfigMap
+#metadata:
+#  name: argocd-notifications-cm
+#data:
+#  service.teams: |
+#    recipientUrls:
+#      channelName: $channel-teams-url
+#---
+#apiVersion: v1
+#kind: Secret
+#metadata:
+#  name: argocd-notifications-secret
+#stringData:
+#  channel-teams-url: https://gearmentinc.webhook.office.com/webhookb2/1476b39f-9d9f-4d83-9851-ce7ac115ee3c@92ab7646-e7fe-4eb7-a29b-436d706c0a3d/IncomingWebhook/8311c5fc4997482699df869e01e131d7/f62080b2-0210-4a9c-ad65-b737537be39a
