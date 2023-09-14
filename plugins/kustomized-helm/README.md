@@ -24,7 +24,7 @@ Use following steps to try the application:
 ```
 argocd app create kustomized-helm \
     --config-management-plugin kustomized-helm \
-    --repo https://github.com/argoproj/argocd-example-apps \
+    --repo https://github.com/kankun92/argocd-example-apps \
     --path plugins/kustomized-helm \
     --dest-server https://kubernetes.default.svc \
     --dest-namespace default
